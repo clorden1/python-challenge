@@ -20,7 +20,7 @@ with open(budgetPath) as budgetCsv:
     dates = list(dictionary.keys())
 
     #initiate variables needed for loops
-    total = sum(dictionary.values())
+    total = sum(profits)
     count = len(dictionary)
     change = 0
     lsChange = []
