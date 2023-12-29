@@ -14,19 +14,23 @@ with open(budgetPath) as budgetCsv:
     #read header row
     header = next(budgetRead)
 
-    #create dictionary for profits/losses data
-    dictionary = {rows[0]:int(rows[1]) for rows in budgetRead}
-    profits = list(dictionary.values())
-    dates = list(dictionary.keys())
+    #declare wmpty lists to read variables
+    profits = []
+    dates = []
+
+    #assign csv variables to lists
+    for rows in budgetRead:
+        dates.append(rows[0])
+        profits.append(int(rows[1]))
 
     #initiate variables needed for loops
     total = sum(profits)
-    count = len(dictionary)
+    count = len(profits)
     change = 0
     lsChange = []
 
     #loop to create list of changes in profits/losses
-    for x in range(1,count):
+    for x in range(1, count):
         change = profits[x] - profits[x-1]
         lsChange.append(change)
 
@@ -37,7 +41,8 @@ with open(budgetPath) as budgetCsv:
     maxdate = dates[(lsChange.index(maxinc))+1]
     mindate = dates[(lsChange.index(maxdec))+1]
     
-    #test to see if all values correct
-    print(count,total,avgChange,maxdec,maxinc)
-    print(maxdate)
-    print(mindate)
+    # #test to see if all values correct
+    # print(count,total,avgChange,maxdec,maxinc)
+    # print(maxdate)
+    # print(mindate)
+
