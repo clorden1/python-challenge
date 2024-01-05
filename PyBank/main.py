@@ -14,7 +14,7 @@ with open(budgetPath) as budgetCsv:
     #read header row
     header = next(budgetRead)
 
-    #declare wmpty lists to read variables
+    #declare empty lists to read variables
     profits = []
     dates = []
 
