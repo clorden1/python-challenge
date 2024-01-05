@@ -35,7 +35,7 @@ with open(budgetPath) as budgetCsv:
         lsChange.append(change)
 
     #calculate max profit, max loss, and avg profit/loss and assign to variables
-    avgChange = sum(lsChange)/len(lsChange)
+    avgChange = round(sum(lsChange)/len(lsChange),2)
     maxinc = max(lsChange)
     maxdec = min(lsChange)
     maxdate = dates[(lsChange.index(maxinc))+1]
@@ -46,3 +46,21 @@ with open(budgetPath) as budgetCsv:
     # print(maxdate)
     # print(mindate)
 
+    print("Financial Analysis")
+    print("----------------------------")
+    print("Total Months: " + str(count))
+    print("Total: $" + str(total))
+    print("Average Change: $" + str(avgChange))
+    print("Greatest Increase in Profits: " + str(maxdate) + " ($" + str(maxinc) +")")
+    print("Greatest Decrease in Profits: " + str(mindate) + " ($" + str(maxdec) +")")
+    
+#create a .txt file in the analysis folder that contains the above printout
+with open("analysis/PyBankResults.txt", "w") as text:
+    text.write(f"""Financial Analysis
+----------------------------
+Total Months: {str(count)}
+Total: ${str(total)}
+Average Change: ${str(avgChange)}
+Greatest Increase in Profits: {str(maxdate)} (${str(maxinc)})
+Greatest Decrease in Profits: {str(mindate)} (${str(maxdec)})"""
+            )
