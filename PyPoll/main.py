@@ -1,4 +1,4 @@
-#import necessary packages
+#import necessary packages to find file path in os and read csv's
 import os
 import csv
 
@@ -15,7 +15,7 @@ with open(path) as pollcsv:
     #initaite lists for for loop
     cand = []
 
-    #use for loop to store data in lists
+    #use for loop to store data in lists. Only the candidate name is needed for analysis.
     for rows in readcsv:
         cand.append(rows[2])
 
@@ -23,7 +23,7 @@ with open(path) as pollcsv:
     total = len(cand)
     
     #use the set() function to create a list of all unique names in the candidate list
-    unique_cand = [set(cand)]
+    unique_cand = [set(cand)]               #Reference 3
 
     #exploratory test to display all candidates to determine variables for next loop
     #print(unique_cand)
@@ -36,11 +36,11 @@ with open(path) as pollcsv:
     #for loop do find number of votes for each candidate
     for x in cand:
         if x == "Charles Casper Stockham":
-            charles_count += 1
+            charles_count += 1              #Reference 2
         elif x == "Diana DeGette":
-            diana_count += 1
+            diana_count += 1                #Reference 2
         else:
-            raymon_count += 1
+            raymon_count += 1               #Reference 2
     
     #Calculate the percentages of vote recieved by each candidate
     percChar = round((charles_count/total)*100,3)
@@ -56,8 +56,8 @@ with open(path) as pollcsv:
         winner = "Raymon Anthony Doane"
     
 #print results in terminal
-print(
-f""" Election Results
+print(                         #Reference 4
+f""" Election Results                                    
  -------------------------
  Total Votes: {total}
  -------------------------
@@ -66,12 +66,12 @@ f""" Election Results
  Raymon Anthony Doane: {percRaym}% ({raymon_count})
  -------------------------
  Winner : {winner}
- -------------------------"""
+ -------------------------""" #Reference 4
 )
 
 #write results to a .txt file in the analysis folder
 with open("analysis/PyPollResults.txt", "w") as text:
-    text.write(
+    text.write(               #Reference 4
 f""" Election Results
  -------------------------
  Total Votes: {total}
@@ -81,5 +81,5 @@ f""" Election Results
  Raymon Anthony Doane: {percRaym}% ({raymon_count})
  -------------------------
  Winner : {winner}
- -------------------------"""
+ -------------------------""" #Reference 4
 )

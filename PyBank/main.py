@@ -23,21 +23,25 @@ with open(budgetPath) as budgetCsv:
         dates.append(rows[0])
         profits.append(int(rows[1]))
 
-    #initiate variables needed for loops
+    #Find total profits and total months by counting the length of profit list
     total = sum(profits)
     count = len(profits)
+
+    #initiate variables needed for loops
     change = 0
     lsChange = []
 
     #loop to create list of changes in profits/losses
-    for x in range(1, count):
-        change = profits[x] - profits[x-1]
-        lsChange.append(change)
+    for x in range(1, count):                #Reference #1
+        change = profits[x] - profits[x-1]   #Reference #1
+        lsChange.append(change)              #Reference #1
 
     #calculate max profit, max loss, and avg profit/loss and assign to variables
     avgChange = round(sum(lsChange)/len(lsChange),2)
     maxinc = max(lsChange)
     maxdec = min(lsChange)
+
+    #find the dates associated with the maximum increase and decrease in profits
     maxdate = dates[(lsChange.index(maxinc))+1]
     mindate = dates[(lsChange.index(maxdec))+1]
     
@@ -46,6 +50,7 @@ with open(budgetPath) as budgetCsv:
     # print(maxdate)
     # print(mindate)
 
+    #print results to the terminal
     print("Financial Analysis")
     print("----------------------------")
     print("Total Months: " + str(count))
@@ -55,12 +60,12 @@ with open(budgetPath) as budgetCsv:
     print("Greatest Decrease in Profits: " + str(mindate) + " ($" + str(maxdec) +")")
     
 #create a .txt file in the analysis folder that contains the above printout
-with open("analysis/PyBankResults.txt", "w") as text:
+with open("analysis/PyBankResults.txt", "w") as text:            #Reference 4
     text.write(f"""Financial Analysis
 ----------------------------
 Total Months: {str(count)}
 Total: ${str(total)}
 Average Change: ${str(avgChange)}
 Greatest Increase in Profits: {str(maxdate)} (${str(maxinc)})
-Greatest Decrease in Profits: {str(mindate)} (${str(maxdec)})"""
+Greatest Decrease in Profits: {str(mindate)} (${str(maxdec)})""" #Reference 4
             )
